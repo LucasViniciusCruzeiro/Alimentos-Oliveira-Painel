@@ -1,0 +1,10 @@
+<mat-form-field [formGroup]="formGroup" appearance="outline" fxFlex>
+  <mat-label>{{ label }}</mat-label>
+  <input matInput [mask]="mask" [formControlName]="formcontrolname" [required]="checkRequired()"
+    [placeholder]="placeholder" (keyup)="onChange($event.target.value)" #input>
+  <mat-icon *ngIf="iconName" matSuffix class="secondary-text">{{ iconName }}</mat-icon>
+  <mat-hint align="end" *ngIf="maxLength">{{input.value?.length || 0}}/{{ maxLength }}</mat-hint>
+  <mat-error>
+    <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
+  </mat-error>
+</mat-form-field>

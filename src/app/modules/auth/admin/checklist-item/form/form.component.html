@@ -1,0 +1,27 @@
+<div id="view" fxFlex fxLayout="column">
+
+    <app-header [formGroup]="form" [operation]="operation" [iconName]="iconName" [title]="title" (cancel)="onCancel()"
+        (save)="onSave()">
+    </app-header>
+
+    <div class="content-form-wrapper w-95-p p-20" fxFlex="100" fxLayout="column" fusePerfectScrollbar>
+
+        <app-input-select fxflex [data]="factories" valueField="idFactory" displayField="name" [formGroup]="form"
+            formcontrolname="idFactory" label="Selecione a Fábrica">
+        </app-input-select>
+
+        <app-input-select [data]="type" valueField="id" displayField="description" [formGroup]="form"
+            formcontrolname="type" label="Selecione o Tipo">
+        </app-input-select>
+
+        <app-text-area fxFlex.sm="50" fxFlex.xs="100" [formGroup]="form" formcontrolname="description"
+            label="Descrição do item" [maxLength]="1024" placeholder="Descrição do item">
+        </app-text-area>
+
+        <app-input-toggle fxFlexAlign="center" [formGroup]="form" *ngIf="operation != 'VIEW'"
+            label="Item Obrigatório" formcontrolname="required">
+        </app-input-toggle>
+
+    </div>
+
+</div>

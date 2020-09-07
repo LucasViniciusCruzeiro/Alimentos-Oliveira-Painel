@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline" fxFlex>
+    <div class="editor-tag" (click)="focusTagInput()">
+        <span [ngStyle]="{'background-color': backgroundColor}" class="tag-item" *ngFor="let tag of data">
+            <div [ngStyle]="{'color': wordColor}" fxLayout="row">
+                <span class="tag" fxLayout="column">{{tag}}</span>
+                <mat-icon fxLayout="column" class="remove-tag" (click)="removeTag(tag)" matSuffix>close</mat-icon>
+            </div>
+        </span>
+        <input matInput [placeholder]="placeholder" [required]="checkRequired()" #tagInput type="text" class="input-tag"
+            (keyup)="onKeyUp($event)" [(ngModel)]="value">
+    </div>
+    <mat-error
+        *ngIf="!formGroup?.get(formcontrolname).value && formGroup?.get(formcontrolname).touched && formGroup.touched">
+        <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
+    </mat-error>
+</mat-form-field>

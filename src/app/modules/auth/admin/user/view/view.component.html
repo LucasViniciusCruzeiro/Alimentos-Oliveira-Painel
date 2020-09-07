@@ -1,0 +1,15 @@
+<div id="view" fxFlex fxLayout="column">
+  
+  <app-header [operation]="operation" [iconName]="iconName" (search)="onSearch($event)" [title]="title"
+  [isFilter]="true" (filter)="onFilter($event)" [config]="filterOrder">
+ </app-header>
+
+  <!-- CONTENT WRAPPER -->
+  <div class="content-wrapper w-100-p" fusePerfectScrollbar>
+    <app-data-table [data]="dataSource" [config]="configuration" [isPaginated]="true" [isViewed]="true"
+      [isUpdated]="true" [isDeleted]="false" (refresh)="onRefresh($event)" (update)="onUpdate($event)"
+      (view)="onView($event)" (changeStatus)="onChangeStatus($event)">
+    </app-data-table>
+  </div>
+  <!-- / CONTENT WRAPPER -->
+</div>

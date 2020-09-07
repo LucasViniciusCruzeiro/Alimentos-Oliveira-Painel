@@ -1,0 +1,13 @@
+<div fxFlex>
+  <label>{{ label }} {{ checkRequired() ? ' *' : '' }}</label>
+  <mat-radio-group [fxLayout]="layout" fxLayoutGap="20px" [disabled]="!editable"
+    [(ngModel)]="formGroup?.get(formcontrolname).value" (change)="setValue($event)">
+    <mat-radio-button *ngFor="let radio of radios" [value]="radio[valueField]" color="primary">
+      {{ radio[displayField] }}
+    </mat-radio-button>
+  </mat-radio-group>
+  <mat-error
+    *ngIf="!formGroup?.get(formcontrolname).value && formGroup?.get(formcontrolname).touched && formGroup.touched">
+    <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
+  </mat-error>
+</div>

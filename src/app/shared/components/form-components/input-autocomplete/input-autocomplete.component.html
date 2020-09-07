@@ -1,0 +1,13 @@
+<mat-form-field [formGroup]="formGroup" appearance="outline" fxFlex>
+    <input matInput [placeholder]="placeholder" [matAutocomplete]="auto" [formControlName]="formcontrolname"
+        autocomplete="off">
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of filteredData | async" [value]="item[valueField]">
+            <img *ngIf="item[imageField]" class="option-img" aria-hidden [src]="item[imageField]" height="25">
+            <span>{{ item[textField] }}</span>
+        </mat-option>
+    </mat-autocomplete>
+    <mat-error>
+        <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
+    </mat-error>
+</mat-form-field>

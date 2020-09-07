@@ -1,0 +1,9 @@
+<mat-form-field [formGroup]="formGroup" appearance="outline" fxFlex>
+  <mat-label>{{ label }}</mat-label>
+
+  <input [required]="checkRequired(formcontrolname)" type="number" matInput [formControlName]="formcontrolname" 
+      [placeholder]="placeholder" autocomplete="off" [min]="min" [max]="max"  onkeydown="return event.keyCode !== 69">
+  <mat-error>
+      <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
+  </mat-error>
+</mat-form-field>

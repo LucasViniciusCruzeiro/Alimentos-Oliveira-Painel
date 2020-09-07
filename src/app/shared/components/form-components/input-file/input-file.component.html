@@ -1,0 +1,15 @@
+<mat-form-field class="pointer" [formGroup]="formGroup" fxFlex appearance="outline">
+  <mat-label>
+    <span class="label">{{ label }}</span>
+  </mat-label>
+  <mat-icon fxFlex fxLayoutAlign="end">attach_file</mat-icon>
+
+  <ngx-mat-file-input [accept]="accept" [formControlName]="formcontrolname" [placeholder]="placeholder">
+  </ngx-mat-file-input>
+
+  <mat-error class="mt-8"
+    *ngIf="!formGroup?.get(formcontrolname).value && formGroup?.get(formcontrolname).touched && formGroup.touched">
+    <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
+  </mat-error>
+
+</mat-form-field>

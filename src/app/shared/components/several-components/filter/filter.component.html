@@ -1,0 +1,39 @@
+<div fxFlex="100" style="width: 0 !important;" fxLayout="row" fxLayoutGap="10px">
+
+  <ng-container *ngFor="let item of config.filters; let i = index">
+
+    <div fxFlex="100" style="width: 0 !important;" [ngSwitch]="item.type">
+
+      <mat-form-field fxFlex="100" *ngSwitchCase="'type_select'" style="font-size: 10px;" appearance="outline">
+        <mat-label>{{ item.label }}</mat-label>
+        <mat-select [(ngModel)]="result[i]" (ngModelChange)="onChange($event, item.returnParam)">
+          <mat-option *ngFor="let element of item.data" [value]="element[item.valueField]">
+            {{ element[item.displayField] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-slide-toggle fxFlex="100" *ngSwitchCase="'type_toggle'" [(ngModel)]="result[i]"
+        (ngModelChange)="onChange($event, item.returnParam)">
+        <span style="font-size: 10px;">{{ item.label }} {{result[i]}}</span>
+      </mat-slide-toggle>
+
+      <mat-form-field fxFlex="100" *ngSwitchCase="'type_date'" style="font-size: 10px;" appearance="outline">
+        <mat-label>{{ item.label }}</mat-label>
+        <input [(ngModel)]="result[i]" matInput [matDatepicker]="picker" [placeholder]="label" autocomplete="off"
+          [min]="minDate" [max]="maxDate" (ngModelChange)="onChange($event, item.returnParam)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100" *ngSwitchCase="'type_input'" style="font-size: 10px;" appearance="outline">
+        <mat-label>{{ item.label }}</mat-label>
+        <input [(ngModel)]="result[i]" matInput [placeholder]="label" autocomplete="off"
+          (ngModelChange)="onChange($event, item.returnParam)">
+      </mat-form-field>
+
+    </div>
+
+  </ng-container>
+
+</div>

@@ -1,0 +1,38 @@
+<div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/images/logos/logo_wide.png">
+        </div>
+    </div>
+
+    <div id="login-form-wrapper" fusePerfectScrollbar [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="login-form">
+            <div class="title">Entre na sua conta FLG Monitoria</div>
+
+            <form name="form" [formGroup]="form" novalidate>
+
+                <app-input-select [data]="factories" displayField="name" [formGroup]="form" 
+                    formcontrolname="idFactory" label="Selecione uma Fábrica" 
+                    placeholder="Selecione uma Fábrica" searchField="name" valueField="idFactory">
+                </app-input-select>
+
+                <app-input-email [formGroup]="form" formcontrolname="email"></app-input-email>
+                
+                <app-input-password [formGroup]="form" formcontrolname="password"></app-input-password>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+                    <a class="forgot-password" [routerLink]="'/not-auth/forgot-password'">Esqueceu a Senha?</a>
+                </div>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="ENTRAR"
+                    [disabled]="form.invalid" (click)="onLogin()">
+                    ENTRAR
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<mat-form-field  [formGroup]="formGroup" appearance="outline" fxFlex>
+  <mat-label>{{ label }}</mat-label>
+  <textarea #input matTextareaAutosize matAutosizeMinRows="4" matAutosizeMaxRows="4" [required]="checkRequired(formcontrolname)" type="text" matInput [formControlName]="formcontrolname" [placeholder]="placeholder" autocomplete="off"></textarea>
+  <mat-hint align="end" *ngIf="maxLength">{{input.value?.length || 0}}/{{ maxLength }}</mat-hint>
+  <mat-error>
+      <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
+  </mat-error>
+</mat-form-field>

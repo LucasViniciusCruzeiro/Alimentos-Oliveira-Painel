@@ -1,0 +1,51 @@
+<div id="view" fxFlex fxLayout="column">
+
+    <app-header [formGroup]="form" [operation]="operation" [iconName]="iconName" (search)="onSearch($event)"
+        [title]="title" [subtitle]="subtitle" (cancel)="onCancel()" (save)="onSave()">
+    </app-header>
+
+    <div class="content-form-wrapper w-95-p p-20" fxFlex="100" fxLayout="column" fusePerfectScrollbar>
+
+        <app-input-toggle fxFlex="15" fxFlexAlign="center" [formGroup]="form" (changeValue)="changeConnectedShipping($event)"
+            label="Ligado a Transportadora" formcontrolname="connectedShippingCompany" *ngIf="operation === 'NEW'">
+        </app-input-toggle>
+
+        <app-input-select [data]="shippingCompanies" displayField="name" [formGroup]="form"
+            *ngIf="form.controls['connectedShippingCompany'].value === true && operation !== 'EDIT'" formcontrolname="idShippingCompany" label="Selecione uma Transportadora"
+            placeholder="Selecione uma Transportadora" searchField="name" valueField="idShippingCompany"
+            (select)="onSelectShippingCompany($event)">
+        </app-input-select>
+
+        <app-input-text [formGroup]="form" formcontrolname="sector" label="Setor"
+            [maxLength]="40" placeholder="Setor">
+        </app-input-text>
+
+        <div fxLayout="row" class="pt-20">
+            <div class="w-45-p mr-48" >
+
+                <app-input-text [formGroup]="form" formcontrolname="username" label="Nome do Usuário"
+                    [maxLength]="15" placeholder="Nome do Usuário">
+                </app-input-text>
+
+                <app-input-text [formGroup]="form" formcontrolname="email" label="Email"
+                    [maxLength]="100" placeholder="Email">
+                </app-input-text>
+
+                <app-input-toggle fxFlexAlign="center" [formGroup]="form" label="Redefinir Senha"
+                    formcontrolname="redefinePassword" *ngIf="operation === 'EDIT'">
+                </app-input-toggle>
+
+            </div>
+
+            <div class="w-45-p ml-48 select-multiple" *ngIf="operation === 'NEW'" formarrayname="profiles">
+                <app-input-select-multiple *ngFor="let item of factories"
+                    [data]="item.profiles" displayField="description" [formGroup]="form"
+                    formcontrolname="selectedProfile" [label]="item.name" [searchField]="item.name"
+                    valueField="idProfile" (changeSelect)="addItem($event, item)">
+                </app-input-select-multiple>
+            </div>
+
+        </div>
+
+    </div>
+</div>

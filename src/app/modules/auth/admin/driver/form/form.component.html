@@ -1,0 +1,82 @@
+<div id="view" fxFlex fxLayout="column">
+
+    <app-header [formGroup]="form" [operation]="operation" [iconName]="iconName" [title]="title" (cancel)="onCancel()"
+        (save)="onSave()">
+    </app-header>
+
+    <div class="content-form-wrapper w-95-p p-20" fxFlex="100" fxLayout="column" fxLayoutGap="10px"
+        fusePerfectScrollbar>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px">
+            <app-input-text fxFlex fxFlex.sm="50" fxFlex.xs="100" [formGroup]="form" formcontrolname="name"
+                label="Nome do Motorista" iconName="person" [maxLength]="80" placeholder="Nome do Motorista">
+            </app-input-text>
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+            <app-input-text fxFlex="50" [formGroup]="form" formcontrolname="cpf" placeholder=""
+                label="CPF" mask="000.000.000-00"></app-input-text>
+
+            <app-input-datepicker fxFlex fxFlex.sm="50" fxFlex.xs="100" [formGroup]="form" formcontrolname="birthDate"
+                label="Data de Nascimento" placeholder="DD-MM-AAAA" mask="00-00-0000" [cleanInput]="cleanInput">
+            </app-input-datepicker>
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+            <app-input-text fxFlex [formGroup]="form" formcontrolname="cnh" placeholder="CNH" 
+                label="CNH" mask="00000000000"></app-input-text>
+
+            <app-input-text-category-cnh fxFlex [formGroup]="form" formcontrolname="category" placeholder=""               
+                label="Categoria da CNH"></app-input-text-category-cnh>
+
+            <app-input-datepicker fxFlex fxFlex.sm="50" fxFlex.xs="100" [formGroup]="form" [cleanInput]="cleanInput"
+                formcontrolname="dateValidity" label="Data de Validade" placeholder="DD-MM-AAAA" mask="00-00-0000">
+            </app-input-datepicker>
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+            <app-input-text fxFlex [formGroup]="form" formcontrolname="email" label="Email" [maxLength]="100"
+                placeholder="Email">
+            </app-input-text>
+
+            <app-input-text fxFlex [formGroup]="form" formcontrolname="phoneNumber" placeholder="(00) 0000-0000"
+                label="Telefone Fixo" mask="(00) 0000-0000"></app-input-text>
+
+            <app-input-text fxFlex [formGroup]="form" formcontrolname="cellPhoneNumber" placeholder="(00) 00000-0000"
+                label="Celular" mask="(00) 00000-0000"></app-input-text>
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px">
+            <app-input-select fxFlex [data]="factories" valueField="idFactory" displayField="name" [formGroup]="form"
+                formcontrolname="idFactory" label="Selecione a Fábrica">
+            </app-input-select>
+        </div>
+
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+            <app-input-select fxFlex [data]="states" displayField="name" [formGroup]="form" formcontrolname="idState"
+                label="Selecione o Estado" searchField="name" valueField="idState" (select)="onSelectState($event)">
+            </app-input-select>
+
+            <app-input-select fxFlex [data]="cities" displayField="name" [formGroup]="form" formcontrolname="idCity"
+                label="Selecione a Cidade" searchField="name" valueField="idCity">
+            </app-input-select>
+
+            <app-input-text fxFlex [formGroup]="form" formcontrolname="zipCode" label="CEP"
+                placeholder="00000-000" mask="00000-000">
+            </app-input-text>
+        </div>
+
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+            <app-input-text fxFlex [formGroup]="form" formcontrolname="address" label="Endereço" [maxLength]="60"
+                placeholder="Endereço">
+            </app-input-text>
+            <app-input-text fxFlex [formGroup]="form" formcontrolname="neighborhood" label="Bairro" [maxLength]="40"
+                placeholder="Bairro">
+            </app-input-text>
+        </div>
+
+    </div>
+
+</div>

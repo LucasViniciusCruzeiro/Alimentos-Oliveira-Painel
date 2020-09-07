@@ -1,0 +1,33 @@
+<div id="view-form" fxFlex fxLayout="column">
+  <app-header [formGroup]="form" [operation]="operation" [iconName]="iconName" (search)="onSearch($event)"
+    [title]="title" [subtitle]="subtitle" (cancel)="onCancel()" (save)="onSave()" (update)="onUpdate()">
+  </app-header>
+
+  <!-- CONTENT FORM WRAPPER -->
+  <div class="content-form-wrapper w-95-p p-20" fusePerfectScrollbar>
+    <form fxLayoutAlign="space-between" fxLayout="column">
+      <div fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="30px">
+        <app-input-text [formGroup]="form" formcontrolname="id" label="Id">
+        </app-input-text>
+
+        <app-input-text fxFlex [formGroup]="form" formcontrolname="profileName" label="Nome do Perfil" [maxLength]="60"
+          placeholder="Nome do Perfil">
+        </app-input-text>
+      </div>
+
+      <app-input-select fxFlex [data]="factoryList" displayField="display" [formGroup]="form"
+        formcontrolname="idFactory" label="Selecione a Fábrica" searchField="description" valueField="value">
+      </app-input-select>
+
+      <app-input-select-multiple fxFlex [data]="factoryList" displayField="display" [formGroup]="form"
+        formcontrolname="screens" label="Telas" searchField="display" valueField="id">
+      </app-input-select-multiple>
+
+      <app-input-select-multiple fxFlex [data]="factoryList" displayField="display" [formGroup]="form"
+        formcontrolname="features" label="Funcionalidades" searchField="description" valueField="id">
+      </app-input-select-multiple>
+
+    </form>
+  </div>
+  <!-- / CONTENT FORM WRAPPER -->
+</div>
