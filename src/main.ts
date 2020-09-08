@@ -1,34 +1,30 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { hmrBootstrap } from 'hmr';
-import { getAllDataFromLocalForage, default as localForage } from 'ngrx-store-persist';
 
-if (environment.production) {
+if ( environment.production )
+{
     enableProdMode();
 }
 
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
 
-if (environment.hmr) {
-    if (module['hot']) {
+if ( environment.hmr )
+{
+    if ( module['hot'] )
+    {
         hmrBootstrap(module, bootstrap);
     }
-    else {
+    else
+    {
         console.error('HMR is not enabled for webpack-dev-server!');
         console.log('Are you using the --hmr flag for ng serve?');
     }
 }
-else {
+else
+{
     bootstrap().catch(err => console.error(err));
 }
-
-getAllDataFromLocalForage({
-    driver: localForage.LOCALSTORAGE,
-    keys: ['auth'],
-}).then(() => {
-    platformBrowserDynamic()
-        .bootstrapModule(AppModule)
-        .catch(err => console.log(err));
-});

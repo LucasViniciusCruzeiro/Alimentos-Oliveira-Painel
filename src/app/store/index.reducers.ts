@@ -1,5 +1,5 @@
-import { authReducer } from './authentication/reducers';
+import { shippingCompanyReducer } from './shipping-company/reducers';
 
 export const rootReducer = {
-  auth: authReducer
+  shippingCompany: shippingCompanyReducer
 };

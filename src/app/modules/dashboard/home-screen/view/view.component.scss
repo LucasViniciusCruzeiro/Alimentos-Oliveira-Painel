@@ -1,0 +1,15 @@
+div {
+    background: #000;
+    width: 640px;
+    height: 640px;
+    opacity: 0.4;
+    position: absolute;
+    z-index: 99;
+  }
+#view {
+    background: url('/assets/images/backgrounds/background.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }

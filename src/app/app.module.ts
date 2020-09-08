@@ -15,8 +15,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from 'app/app.component';
 import { fuseConfig } from 'app/fuse-config';
 import { LayoutModule } from 'app/layout/layout.module';
+
 import { rootReducer } from './store/index.reducers';
-import { storageSyncMetaReducer } from 'ngrx-store-persist';
+
 import { AppRoutingModule } from './app-routing.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { LoadingModule } from './shared/components/several-components/loading/loading.module';
@@ -43,7 +44,7 @@ import { LoadingModule } from './shared/components/several-components/loading/lo
         FuseThemeOptionsModule,
 
         // NgRx
-        StoreModule.forRoot(rootReducer, { metaReducers: [storageSyncMetaReducer]}),
+        StoreModule.forRoot(rootReducer),
         StoreDevtoolsModule.instrument({maxAge: 25}),
 
         // App modules

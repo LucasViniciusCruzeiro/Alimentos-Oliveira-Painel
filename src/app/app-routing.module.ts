@@ -5,20 +5,16 @@ import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'not-auth',
-        loadChildren: () => import('./modules/not-auth/not-auth.module').then(m => m.NotAuthModule)
+        path: '',
+        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'auth',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+        path: 'admin',
+        loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
       },
-      {
-        path: '**',
-        redirectTo: 'auth'
-      }
     ]
   },
 ];

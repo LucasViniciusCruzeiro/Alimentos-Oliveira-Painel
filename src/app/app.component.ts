@@ -92,8 +92,8 @@ export class AppComponent implements OnInit, OnDestroy {
          setTimeout(() => {
             this._translateService.setDefaultLang('en');
             this._translateService.setDefaultLang('tr');
-            });
-        */
+         });
+         */
 
         /**
          * ----------------------------------------------------------------------------------------------------
@@ -122,9 +122,9 @@ export class AppComponent implements OnInit, OnDestroy {
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config) => {
+
                 this.fuseConfig = config;
 
-                this.fuseConfig.layout.toolbar.hidden = true;
                 // Boxed
                 if (this.fuseConfig.layout.width === 'boxed') {
                     this.document.body.classList.add('boxed');
