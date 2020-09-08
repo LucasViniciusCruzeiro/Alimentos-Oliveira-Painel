@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -5,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { ServiceInterface } from '../interfaces/service.interface';
 import { Factory } from '../models/factory.model';
 import { environment } from './../../../environments/environment';
-import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,36 +13,36 @@ import { HttpService } from './http.service';
 export class VehicleTypeService implements ServiceInterface {
   API_BASE_URL: string = environment.API;
 
-  constructor(private _httpService: HttpService) { }
+  constructor(private http: HttpClient) { }
 
   loadAll(payload?: any): Observable<Factory[]> {
     const url = `${this.API_BASE_URL}/vehicle-types`;
 
-    return this._httpService.get(url, payload).pipe(map((result: any) => result));
+    return this.http.get(url, { params: payload }).pipe(map((result: any) => result));
   }
 
   loadOne(id: number): Observable<Factory> {
     const url = `${this.API_BASE_URL}/vehicle-types/${id}`;
 
-    return this._httpService.get(url).pipe(map((result: any) => result.data));
+    return this.http.get(url).pipe(map((result: any) => result.data));
   }
 
   create(payload: any): Observable<Factory> {
     const url = `${this.API_BASE_URL}/vehicle-types`;
 
-    return this._httpService.post(url, payload).pipe(map((result: any) => result));
+    return this.http.post(url, payload);
   }
 
   update(id: number, payload: any): Observable<Factory> {
     const url = `${this.API_BASE_URL}/vehicle-types/${id}`;
 
-    return this._httpService.put(url, payload).pipe(map((result: any) => result.data));
+    return this.http.put(url, payload).pipe(map((result: any) => result.data));
   }
 
   destroy(id: number): Observable<any> {
     const url = `${this.API_BASE_URL}/vehicle-types/${id}`;
 
-    return this._httpService.delete(url).pipe(map((result: any) => result));
+    return this.http.delete(url).pipe(map((result: any) => result));
   }
 
-}
+};

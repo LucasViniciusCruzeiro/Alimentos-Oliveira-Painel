@@ -10,12 +10,6 @@ export const locale = {
                     BADGE: '25'
                 }
             },
-            OPERATION: {
-                TITLE: 'Operation'
-            },
-            LOGOUT: {
-                TITLE: 'Logout'
-            },
             SAMPLE        : {
                 TITLE: 'Sample',
                 BADGE: '25'

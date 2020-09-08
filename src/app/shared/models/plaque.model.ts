@@ -11,7 +11,7 @@ export class Plaque {
     numberOfMouths?: number;
     shakingModel?: string;
     productType?: string;
-    registrationType?: string;
+    typeRegistration?: string;
     active?: boolean;
     factory?: Factory;
     shippingCompany?: ShippingCompany;

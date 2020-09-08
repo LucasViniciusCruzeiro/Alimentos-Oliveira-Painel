@@ -131,12 +131,9 @@ export class UtilsService {
 	}
 
   formatDecimalValues(value, decimalPlaces): number {
-    if (value && decimalPlaces) {
-      const wholePlaces = value.length - decimalPlaces;
-      value = value.slice(0, wholePlaces) + '.' + value.slice(wholePlaces);
-  
-      return parseFloat(value);
-    }
-    return ;
+    const wholePlaces = value.length - decimalPlaces;
+    value = value.slice(0, wholePlaces) + '.' + value.slice(wholePlaces);
+
+    return parseFloat(value);
   }
 }

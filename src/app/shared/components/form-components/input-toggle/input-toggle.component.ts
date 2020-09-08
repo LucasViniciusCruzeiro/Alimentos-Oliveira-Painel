@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UtilsService } from 'app/shared/services/utils.service';
 
@@ -13,8 +13,6 @@ export class InputToggleComponent implements OnInit {
   @Input() formcontrolname: string;
 
   @Input() label;
-  
-  @Output() changeValue = new EventEmitter();
 
   constructor(
     private _utilsService: UtilsService
@@ -23,8 +21,8 @@ export class InputToggleComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChangeValue(event) {
-    this.changeValue.emit(event);
+  setValue(value) {
+    this.formGroup.get(this.formcontrolname).setValue(value.checked ? 1 : 0);
   }
 
   checkRequired() {

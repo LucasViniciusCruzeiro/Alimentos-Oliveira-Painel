@@ -39,17 +39,17 @@ export class InputSelectMultipleComponent implements OnInit, OnChanges, OnDestro
     private _utilsService: UtilsService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.listenSearch();
   }
 
-  listenSearch(): void {
+  listenSearch() {
     this.dataFilterCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(() => {
       this.filterData();
     });
   }
 
-  protected filterData(): void {
+  protected filterData() {
     if (!this.data) { return; }
 
     let search = this.dataFilterCtrl.value;
@@ -71,21 +71,21 @@ export class InputSelectMultipleComponent implements OnInit, OnChanges, OnDestro
     this._cdr.detectChanges();
   }
 
-  ngOnChanges(): void {
+  ngOnChanges() {
     if (this.data) {
       this.filteredData.next(this.data);
     }
   }
 
-  checkRequired(): boolean {
+  checkRequired() {
     return this._utilsService.hasRequiredField(this.formGroup.get(this.formcontrolname));
   }
 
-  onChangeSelect(event): void {
+  onChangeSelect(event) {
     this.changeSelect.emit(event);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this._onDestroy.next();
     this._onDestroy.complete();
   }

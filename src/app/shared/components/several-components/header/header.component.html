@@ -9,7 +9,7 @@
             <ng-container *ngIf="operation === 'INDEX'">
                 <!-- APP TITLE -->
                 <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
-                    <mat-icon class="logo-icon s-32 mr-16" style="color: #fff;" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                         {{ iconName }}
                     </mat-icon>
                     <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -19,7 +19,7 @@
                 <!-- / APP TITLE -->
 
                 <!-- SEARCH -->
-                <div *ngIf="isSearch" class="search-wrapper mx-32 mx-md-0">
+                <div class="search-wrapper mx-32 mx-md-0">
                     <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                         <mat-icon>search</mat-icon>
                         <input #filter (keydown.space)="!searchInput.value ? $event.preventDefault() : $event"
@@ -74,7 +74,7 @@
             fxLayoutAlign.gt-sm="space-between center" *ngIf="operation === 'INDEX'">
             <ng-container>
                 <!-- FILTER -->
-                <app-filter *ngIf="isFilter"  fxFlex [config]="config" (refresh)="onFilter($event)">
+                <app-filter *ngIf="isFilter" fxFlex [config]="config" (refresh)="onFilter($event)">
                 </app-filter>
                 <!-- / FILTER -->
             </ng-container>

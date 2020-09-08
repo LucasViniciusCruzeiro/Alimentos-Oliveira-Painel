@@ -20,8 +20,6 @@ import { InputToggleComponent } from './input-toggle/input-toggle.component';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { InputTextCpfCnpjComponent } from './input-text-cpf-cnpj/input-text-cpf-cnpj.component';
-import { InputEmailComponent } from './input-email/input-email.component';
-import { InputPasswordComponent } from './input-password/input-password.component';
 import { InputTextCategoryCnhComponent } from './input-text-category-cnh/input-text-category-cnh.component';
 
 @NgModule({
@@ -39,8 +37,6 @@ import { InputTextCategoryCnhComponent } from './input-text-category-cnh/input-t
     InputFileComponent,
     InputRadioGroupComponent,
     InputTextCpfCnpjComponent,
-    InputEmailComponent,
-    InputPasswordComponent,
     InputTextCategoryCnhComponent
   ],
   imports: [
@@ -70,8 +66,6 @@ import { InputTextCategoryCnhComponent } from './input-text-category-cnh/input-t
     InputFileComponent,
     InputRadioGroupComponent,
     InputTextCpfCnpjComponent,
-    InputEmailComponent,
-    InputPasswordComponent,
     InputTextCategoryCnhComponent
   ]
 })

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 export interface FormInterface {
   title: string;
-  id: number;
+  id: string | number;
   item: any;
   operation: Operation;
   form: FormGroup;

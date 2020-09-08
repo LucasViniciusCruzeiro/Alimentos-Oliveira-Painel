@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
   @Input() isFilter = true;
-  @Input() isSearch = true;
   @Input() config;
 
   @Output() save = new EventEmitter();

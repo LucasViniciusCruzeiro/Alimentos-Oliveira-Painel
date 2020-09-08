@@ -1,7 +1,7 @@
 <div class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
     <div class="logo">
-        <img class="logo-icon" src="assets/images/logos/logo_wide.png">
+        <span class="logo-text secondary-text">Menu</span>
     </div>
 
     <div class="buttons">
@@ -26,8 +26,11 @@
 
     <div class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
-        <div class="h3 username">{{ username }}</div>
-        <div class="h5 email hint-text mt-8">{{ email }}</div>
+        <div class="h3 username">Alimentos Oliveira</div>
+        <div class="avatar-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground">
+            <img class="avatar" src="assets/images/logos/logo_maior.jpeg">
+        </div>
+
     </div>
 
     <div class="navbar-content">
