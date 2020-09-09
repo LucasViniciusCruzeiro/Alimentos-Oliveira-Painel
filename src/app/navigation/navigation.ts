@@ -29,11 +29,11 @@ export const navigation: FuseNavigation[] = [
                         url: '/admin/factory',
                     },
                     {
-                        id       : 'user-page',
-                        title    : 'Usuários',
-                        type     : 'item',
-                        icon     : 'person',
-                        url      : '/admin/user'
+                        id: 'user-page',
+                        title: 'Usuários',
+                        type: 'item',
+                        icon: 'person',
+                        url: '/admin/user'
                     }, {
                         id: 'vehicle-type',
                         title: 'Tipo de Veículos',
@@ -63,7 +63,23 @@ export const navigation: FuseNavigation[] = [
                         url: '/admin/plaque'
                     },
                 ]
-            }
+            },
+            {
+                id: 'product-page',
+                title: 'Tipos de Produtos',
+                translate: 'NAV.ADMINISTRATIVE.SHIPPING.TITLE',
+                type: 'item',
+                icon: 'list_alt',
+                url: '/products'
+            },
+            {
+                id: 'exit-page',
+                title: 'Sair',
+                type: 'item',
+                icon: 'input',
+                externalUrl: true,
+                url: '/dashboard/home-screen'
+            },
         ]
     }
 ];
