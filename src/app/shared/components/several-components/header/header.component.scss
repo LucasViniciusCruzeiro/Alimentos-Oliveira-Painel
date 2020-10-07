@@ -1,14 +1,36 @@
 @import "src/@fuse/scss/fuse";
 
 header {
-  height: 250px;
-  
+  height: 100%;
+
   .header-wrapper {
+    .logo-text {
+      color: #fff !important;
+    }
+
+    .logo-icon {
+      color: #fff !important;
+    }
+
+    .logo {
+      max-width: 290px;
+    }
+
+    .button-added {
+      max-width: 400px !important;
+      width: auto !important;
+      white-space: normal;
+    }
+
+    .button-refresh {
+      width: 64px !important;
+    }
+
     .search-wrapper {
       color: rgb(73, 73, 73) !important;
       background: #fff !important;
       width: 100%;
-      max-width: 480px;
+      max-width: 380px;
       border-radius: 28px;
       overflow: hidden;
       @include mat-elevation(1);

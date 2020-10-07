@@ -7,14 +7,14 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-input-autocomplete',
   templateUrl: './input-autocomplete.component.html',
-  styleUrls: ['./input-autocomplete.component.scss']
+  styleUrls: ['./input-autocomplete.component.scss'],
 })
 export class InputAutocompleteComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() formGroup: FormGroup;
   @Input() formcontrolname: string;
 
-  @Input() data: Array<any>;
+  @Input() data: any[];
   @Input() valueField: string;
   @Input() imageField: string;
   @Input() textField: string;
@@ -29,7 +29,7 @@ export class InputAutocompleteComponent implements OnInit, OnChanges, OnDestroy 
 
   constructor(
     private _utilsService: UtilsService,
-    private _cdr: ChangeDetectorRef
+    private _cdr: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
@@ -54,11 +54,11 @@ export class InputAutocompleteComponent implements OnInit, OnChanges, OnDestroy 
             return;
           }
           this.filteredData.next(
-            this.data.filter(item => item[this.searchField].toLowerCase().includes(filterValue))
+            this.data.filter(item => item[this.searchField].toLowerCase().includes(filterValue)),
           );
 
           this._cdr.detectChanges();
-        }
+        },
       );
     }
   }

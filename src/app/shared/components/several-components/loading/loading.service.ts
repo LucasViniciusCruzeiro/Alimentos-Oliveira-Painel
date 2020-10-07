@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class LoadingService {
 
@@ -9,15 +9,15 @@ export class LoadingService {
 
     private _isShow: boolean = false;
 
-    show(){
+    show() {
         this._isShow = true;
     }
 
-    hide(){
+    hide() {
         this._isShow = false;
     }
 
-    getStatus(): boolean{
+    getStatus(): boolean {
         return this._isShow;
     }
 }

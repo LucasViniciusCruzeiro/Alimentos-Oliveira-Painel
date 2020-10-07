@@ -5,12 +5,14 @@
   
     <!-- CONTENT FORM WRAPPER -->
     <div class="content-form-wrapper w-95-p p-20" fusePerfectScrollbar>
-      <form fxLayoutAlign="space-between" fxLayout="column">
+      <div fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="30px">
 
-          <app-input-text fxFlex [formGroup]="form" formcontrolname="name" label="Nome do Produto">
-          </app-input-text>
+        <app-input-text fxFlex [formGroup]="form" formcontrolname="name" label="Nome do Produto">
+        </app-input-text>
+        <app-input-number fxFlex [formGroup]="form" formcontrolname="value" label="Valor do Produto">
+        </app-input-number>
 
-      </form>
+      </div>
     </div>
     <!-- / CONTENT FORM WRAPPER -->
   </div>

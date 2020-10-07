@@ -1,24 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UtilsService } from 'app/shared/services/utils.service';
 
 @Component({
   selector: 'app-input-number',
   templateUrl: './input-number.component.html',
-  styleUrls: ['./input-number.component.scss']
+  styleUrls: ['./input-number.component.scss'],
 })
 export class InputNumberComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
   @Input() formcontrolname: string;
-  
   @Input() label: string;
   @Input() placeholder: string;
   @Input() min: number;
   @Input() max: number;
 
   constructor(
-    private _utilsService: UtilsService
+    private _utilsService: UtilsService,
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +32,10 @@ export class InputNumberComponent implements OnInit {
 
   onChange(): void {
     this.formGroup.get(this.formcontrolname).valueChanges.subscribe(data => {
+      if (data === null) {
+        this.formGroup.get(this.formcontrolname).setValue('');
+      }
+
       if (data > this.max) {
         this.formGroup.get(this.formcontrolname).setValue(this.max);
       }

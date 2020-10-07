@@ -1,15 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LoadingService } from './loading.service';
 
 @Component({
   selector: 'loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss']
+  styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent implements OnInit {
 
   constructor(
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
   ) { }
 
   ngOnInit() {

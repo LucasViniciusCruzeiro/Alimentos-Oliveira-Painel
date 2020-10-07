@@ -1,0 +1,29 @@
+<div id="view-form" fxFlex fxLayout="column">
+  <app-header [formGroup]="form" [operation]="operation" [iconName]="iconName" (search)="onSearch($event)"
+    [title]="title" [subtitle]="subtitle" (cancel)="onCancel()" (save)="onSave()">
+  </app-header>
+
+  <!-- CONTENT FORM WRAPPER -->
+  <div class="content-form-wrapper w-95-p p-20" fusePerfectScrollbar>
+    <form fxLayoutAlign="space-between" fxLayout="column">
+      <app-input-select fxFlex [data]="clients" displayField="name" [formGroup]="form" formcontrolname="idClient"
+        label="Selecione um Cliente" placeholder="Selecione um Clients" searchField="name" valueField="idClient">
+      </app-input-select>
+
+      <app-input-select fxFlex [data]="products" displayField="name" [formGroup]="form" formcontrolname="idProduct"
+        label="Selecione um Produto de Venda" placeholder="Selecione um Produto de Venda" searchField="name"
+        valueField="idProduct">
+      </app-input-select>
+
+      <div fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="30px">
+        <app-input-datepicker fxFlex fxFlex.sm="50" fxFlex.xs="100" [formGroup]="form" formcontrolname="dateSales"
+          label="Data da Venda" placeholder="DD-MM-AAAA" mask="00-00-0000" [cleanInput]="cleanInput">
+        </app-input-datepicker>
+
+        <app-input-number fxFlex [formGroup]="form" formcontrolname="amount" label="Quantidade Vendida">
+        </app-input-number>
+      </div>
+    </form>
+  </div>
+  <!-- / CONTENT FORM WRAPPER -->
+</div>

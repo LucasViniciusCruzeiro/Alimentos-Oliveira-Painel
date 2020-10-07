@@ -9,7 +9,7 @@
             <ng-container *ngIf="operation === 'INDEX'">
                 <!-- APP TITLE -->
                 <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
-                    <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon class="logo-icon s-32 mr-16" style="color: #fff;" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                         {{ iconName }}
                     </mat-icon>
                     <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -19,27 +19,40 @@
                 <!-- / APP TITLE -->
 
                 <!-- SEARCH -->
-                <div class="search-wrapper mx-32 mx-md-0">
+                <div *ngIf="isSearch" class="search-wrapper mx-24 mx-md-0">
                     <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                         <mat-icon>search</mat-icon>
-                        <input #filter (keydown.space)="!searchInput.value ? $event.preventDefault() : $event"
-                            [formControl]="searchInput" autocomplete="off" placeholder="Pesquisar...">
+                        <input #filter (keyup)="onPickUpValue()" (keydown)="onValidationSpace($event)"
+                            [formControl]="searchInput" autocomplete="off" placeholder="Pesquisar..." >
                     </div>
                 </div>
                 <!-- / SEARCH -->
 
-                <!-- ADD BUTTON -->
-                <button mat-raised-button class="button fuse-white mt-24 mt-md-0" [routerLink]="['../new']">
-                    <span>ADICIONAR</span>
-                </button>
-                <!-- / ADD BUTTON -->
+                <!-- BUTTONS -->
+                <div class="button-wrapper mx-24 mx-md-0">
+                    <button mat-raised-button class="button button-added fuse-white mx-8 mt-24 mt-md-0" [routerLink]="['../new']"
+                        *ngIf="isAdded">
+                        <span>{{ labelButton }}</span>
+                    </button>
+
+                    <button mat-raised-button class="button button-added fuse-white mx-8 mt-24 mt-md-0" (click)="onSave()"
+                        *ngIf="!isAdded && labelButton !== 'ADICIONAR'">
+                        <span>{{ labelButton }}</span>
+                    </button>
+
+                    <button mat-raised-button class="button button-refresh fuse-white mx-8 mt-24 mt-md-0" (click)="onRefresh()"
+                        *ngIf="isRefresh">
+                        <mat-icon matSuffix class="secondary-text">refresh</mat-icon>
+                    </button>
+                </div>
+                <!-- / BUTTONS -->
             </ng-container>
 
-            <ng-container *ngIf="operation === 'EDIT' || operation === 'NEW' || operation === 'VIEW'">
+            <ng-container *ngIf="operation === 'EDIT' || operation === 'NEW' || operation === 'VIEW' || operation === 'VALIDATE'">
                 <!-- APP TITLE -->
                 <div fxLayout="row" fxLayoutAlign="start center">
 
-                    <button mat-icon-button class="mr-0 mr-sm-16" (click)="onCancel()">
+                    <button *ngIf="isReturn" mat-icon-button class="mr-0 mr-sm-16" (click)="onCancel()">
                         <mat-icon>arrow_back</mat-icon>
                     </button>
 
@@ -55,13 +68,13 @@
                 </div>
                 <!-- / APP TITLE -->
 
-                <button mat-raised-button class="button fuse-white mt-24 mt-md-0" [disabled]="formGroup.invalid"
-                    *ngIf="operation ==='NEW'" (click)="onSave()">
-                    <span>ADICIONAR</span>
+                <button mat-raised-button class="button fuse-white mt-24 mt-md-0" *ngIf="operation ==='NEW' || labelButton !== 'ADICIONAR'" 
+                    [disabled]="formGroup && formGroup.invalid" (click)="onSave()">
+                    <span>{{ labelButton }}</span>
                 </button>
 
-                <button mat-raised-button class="button fuse-white mt-24 mt-md-0"
-                    [disabled]="formGroup.invalid || formGroup.pristine" *ngIf="operation ==='EDIT'" (click)="onSave()">
+                <button mat-raised-button class="button fuse-white mt-24 mt-md-0" *ngIf="operation ==='EDIT' && labelButton === 'ADICIONAR'"
+                    [disabled]="formGroup && (formGroup.invalid || formGroup.pristine)" (click)="onSave()">
                     <span>SALVAR</span>
                 </button>
 
@@ -74,7 +87,7 @@
             fxLayoutAlign.gt-sm="space-between center" *ngIf="operation === 'INDEX'">
             <ng-container>
                 <!-- FILTER -->
-                <app-filter *ngIf="isFilter" fxFlex [config]="config" (refresh)="onFilter($event)">
+                <app-filter class="app-filter" *ngIf="isFilter" fxFlex [config]="config" (refresh)="onFilter($event)">
                 </app-filter>
                 <!-- / FILTER -->
             </ng-container>

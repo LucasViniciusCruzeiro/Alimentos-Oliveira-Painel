@@ -2,7 +2,8 @@
   <mat-label>{{ label }}</mat-label>
 
   <input [required]="checkRequired(formcontrolname)" type="number" matInput [formControlName]="formcontrolname" 
-      [placeholder]="placeholder" autocomplete="off" [min]="min" [max]="max"  onkeydown="return event.keyCode !== 69">
+    [placeholder]="placeholder" autocomplete="off" [min]="min" [max]="max" onkeydown="return event.keyCode !== 69"
+    (keyup)="onChange()">
   <mat-error>
       <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
   </mat-error>

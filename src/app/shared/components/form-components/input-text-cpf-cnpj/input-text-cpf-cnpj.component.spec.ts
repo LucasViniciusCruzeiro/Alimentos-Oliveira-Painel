@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormBuilder, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaterialModule } from 'app/shared/material/material.module';
 
-import { ErrorsComponent } from '../errors/errors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorsComponent } from '../errors/errors.component';
 import { InputTextCpfCnpjComponent } from './input-text-cpf-cnpj.component';
 
 describe('InputTextCpfCnpjComponent', () => {
@@ -16,9 +16,9 @@ describe('InputTextCpfCnpjComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         InputTextCpfCnpjComponent,
-        ErrorsComponent
+        ErrorsComponent,
       ],
       imports: [
         CommonModule,
@@ -37,14 +37,14 @@ describe('InputTextCpfCnpjComponent', () => {
 
     component.formcontrolname = 'inputTextCpfCnpj';
     component.formGroup = formBuilder.group({
-      inputTextCpfCnpj: new FormControl('test message', [Validators.required])
+      inputTextCpfCnpj: new FormControl('test message', [Validators.required]),
     });
 
     component.iconName = 'person';
     component.label = 'Nome';
     component.placeholder = 'Nome';
     component.maxLength = 60;
-    
+
     fixture.detectChanges();
   });
 

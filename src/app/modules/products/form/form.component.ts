@@ -55,6 +55,7 @@ export class FormComponent implements OnInit, FormInterface, OnDestroy {
     this.form = new FormGroup({
       idProduct: new FormControl({ value: null, disabled: true }),
       name: new FormControl(null, Validators.required),
+      value: new FormControl(null, Validators.required),
     });
   }
 
@@ -74,7 +75,6 @@ export class FormComponent implements OnInit, FormInterface, OnDestroy {
     if (this._utilsService.formIsValid(this.form)) {
 
       if (this.operation === Operation.NEW) {
-        console.log(this.form.value);
         this._productService.create(this.form.value).subscribe(data => {
           this._swalService.success('Operação realizada com sucesso.').then(res => this.navigate());
         }, (error) => {

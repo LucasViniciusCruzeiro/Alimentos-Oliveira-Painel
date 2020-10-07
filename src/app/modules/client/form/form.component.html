@@ -1,0 +1,84 @@
+<div id="view" fxFlex fxLayout="column">
+
+    <div class="content-header">
+
+        <app-header [formGroup]="form" [operation]="operation" [iconName]="iconName" (search)="onSearch($event)"
+            [title]="title" [subtitle]="subtitle" (cancel)="onCancel()" (save)="onSave()">
+        </app-header>
+
+    </div>
+
+    <div class="content-form-wrapper w-95-p p-20" fusePerfectScrollbar>
+        <form fxLayoutAlign="space-between" fxLayout="column">
+
+            <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+
+                <app-input-text fxFlex [formGroup]="form" formcontrolname="name" label="Nome do Cliente"
+                    [maxLength]="80" placeholder="Nome do Cliente">
+                </app-input-text>
+
+            </div>
+
+            <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+
+                <app-input-text fxFlex [formGroup]="form" formcontrolname="address" label="Endereço" [maxLength]="60"
+                    placeholder="Endereço">
+                </app-input-text>
+
+                <app-input-text fxFlex [formGroup]="form" formcontrolname="neighborhood" label="Bairro" [maxLength]="40"
+                    placeholder="Bairro">
+                </app-input-text>
+
+            </div>
+
+
+            <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+
+                <app-input-text fxFlex [formGroup]="form" formcontrolname="zipCode" label="CEP" placeholder="CEP"
+                    mask="00000-000">
+                </app-input-text>
+
+                <app-input-select fxFlex [data]="states" displayField="name" [formGroup]="form"
+                    formcontrolname="idState" label="Estado" (selectChange)="onSelectState($event)" placeholder="Estado"
+                    searchField="name" valueField="idState">
+                </app-input-select>
+
+                <app-input-select fxFlex [data]="cities" displayField="name" [formGroup]="form" formcontrolname="idCity"
+                    label="Cidade" placeholder="Cidade" searchField="name" valueField="idCity">
+                </app-input-select>
+
+            </div>
+
+            <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+
+                <app-input-select fxFlex [data]="personType" displayField="description" [formGroup]="form"
+                    formcontrolname="personType" label="Selecione Tipo de Pessoa" placeholder="Selecione Tipo de Pessoa"
+                    valueField="id">
+                </app-input-select>
+
+                <app-input-text-cpf-cnpj fxFlex [personType]="form.value.personType" [formGroup]="form"
+                    formcontrolname="document" label="CPF/CNPJ" placeholder="CPF/CNPJ">
+                </app-input-text-cpf-cnpj>
+
+                <app-input-text fxFlex [formGroup]="form" formcontrolname="email" label="Email" [maxLength]="100"
+                    placeholder="Email">
+                </app-input-text>
+
+            </div>
+
+            <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+
+                <app-input-text fxFlex [formGroup]="form" formcontrolname="fixPhone" label="Telefone"
+                    placeholder="Telefone" mask="(00) 0000-0000">
+                </app-input-text>
+
+                <app-input-text fxFlex [formGroup]="form" formcontrolname="phoneNumber" label="Celular"
+                    placeholder="Celular" mask="(00) 00000-0000">
+                </app-input-text>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

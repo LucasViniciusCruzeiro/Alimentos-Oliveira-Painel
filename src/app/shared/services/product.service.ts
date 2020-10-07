@@ -45,4 +45,4 @@ export class ProductService implements ServiceInterface {
     return this.http.delete(url).pipe(map((result: any) => result));
   }
 
-};
+}

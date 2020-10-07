@@ -1,0 +1,16 @@
+<div id="view-form" fxFlex fxLayout="column">
+    <app-header [formGroup]="form" [operation]="operation" [iconName]="iconName" (search)="onSearch($event)"
+      [title]="title" [subtitle]="subtitle" (cancel)="onCancel()" (save)="onSave()">
+    </app-header>
+  
+    <!-- CONTENT FORM WRAPPER -->
+    <div class="content-form-wrapper w-95-p p-20" fusePerfectScrollbar>
+      <div fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="30px">
+
+        <app-input-text fxFlex [formGroup]="form" formcontrolname="name" label="Sigla do Estado">
+        </app-input-text>
+
+      </div>
+    </div>
+    <!-- / CONTENT FORM WRAPPER -->
+  </div>

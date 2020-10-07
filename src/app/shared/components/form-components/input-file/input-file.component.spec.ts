@@ -8,7 +8,7 @@ describe('InputFileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputFileComponent ]
+      declarations: [ InputFileComponent ],
     })
     .compileComponents();
   }));

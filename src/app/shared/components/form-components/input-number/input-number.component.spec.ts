@@ -8,7 +8,7 @@ describe('InputNumberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputNumberComponent ]
+      declarations: [ InputNumberComponent ],
     })
     .compileComponents();
   }));

@@ -8,7 +8,7 @@ describe('InputTagComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputTagComponent ]
+      declarations: [ InputTagComponent ],
     })
     .compileComponents();
   }));

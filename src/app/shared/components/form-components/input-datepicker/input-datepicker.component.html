@@ -1,15 +1,14 @@
 <mat-form-field [formGroup]="formGroup" fxFlex appearance="outline">
   <mat-label>{{label}}</mat-label>
   <div fxLayout="row" fxLayoutAlign="space-between start">
-    <input [readonly]="readonly" [required]="checkRequired(formcontrolname)" matInput [matDatepicker]="picker"
+    <input maxlength="10" [readonly]="readonly" [required]="checkRequired(formcontrolname)" matInput [matDatepicker]="picker"
       [placeholder]="placeholder" [formControlName]="formcontrolname" autocomplete="off" [min]="minDate" [max]="maxDate"
-      (dateChange)="verifyDate()">
+      (dateChange)="verifyDate($event)">
     <mat-icon matTooltip="Limpar" matTooltipPosition="above" *ngIf="(formGroup.get(formcontrolname).value && cleanInput)"
       (click)="resetField()" class="icon">close</mat-icon>
   </div>
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
-
   <mat-error>
     <app-errors [formcontrolname]="formcontrolname" [formGroup]="formGroup"></app-errors>
   </mat-error>

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UtilsService } from 'app/shared/services/utils.service';
 
 @Component({
   selector: 'app-input-datepicker',
   templateUrl: './input-datepicker.component.html',
-  styleUrls: ['./input-datepicker.component.scss']
+  styleUrls: ['./input-datepicker.component.scss'],
 })
 export class InputDatepickerComponent implements OnInit {
 
@@ -17,11 +17,14 @@ export class InputDatepickerComponent implements OnInit {
   @Input() initialDate = null;
   @Input() finalDate = null;
   @Input() cleanInput: string;
+
+  @Output() changeValue = new EventEmitter();
+
   minDate = null;
   maxDate = null;
 
   constructor(
-    private _utilsService: UtilsService
+    private _utilsService: UtilsService,
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +39,7 @@ export class InputDatepickerComponent implements OnInit {
     this.formGroup.get(this.formcontrolname).markAsUntouched();
   }
 
-  verifyDate(): void {
+  verifyDate(event): void {
     if (this.finalDate) {
       if (this.finalDate._i) {
         const finDate = this.finalDate._i;
@@ -53,6 +56,7 @@ export class InputDatepickerComponent implements OnInit {
         this.minDate = this.initialDate;
       }
     }
+    this.changeValue.emit(event);
   }
 
 }
