@@ -10,7 +10,7 @@ export class Column {
     static TYPE_INPUT = 'type_input';
     static TYPE_DATE = 'type_date';
 
-    displayedColumn: string | Array<string>;
+    displayedColumn: string | string[];
     columnRef: string;
     nameColumn: string;
     type: string;

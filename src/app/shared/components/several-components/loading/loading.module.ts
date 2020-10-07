@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
-import { LoadingComponent } from './loading.component';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material';
+import { LoadingComponent } from './loading.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [
-    LoadingComponent
+    LoadingComponent,
   ],
   exports: [
-    LoadingComponent
-  ]
+    LoadingComponent,
+  ],
 })
 
 export class LoadingModule { }

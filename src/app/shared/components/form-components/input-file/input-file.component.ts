@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './input-file.component.html',
   styleUrls: ['./input-file.component.scss'],
 })
+
 export class InputFileComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
@@ -26,17 +27,20 @@ export class InputFileComponent implements OnInit {
   filename: string;
   image: string | ArrayBuffer;
 
-  constructor() { }
+  constructor(
+
+  ) { }
 
   ngOnInit(): void {
   }
 
-  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList): void {
+  @HostListener('change', ['$event.target.files'])
+
+  emitFiles(event: FileList): void {
     const file = event && event.item(0);
     this.filename = file ? file.name : null;
-
     // Apenas le o arquivo se o mesmo for uma imagem
-    if (file.type.match(/image\//)) {
+    if (file/* && file.type.match(/image\//)*/) {
       const reader = new FileReader();
       reader.onload = e => this.image = reader.result;
       reader.readAsDataURL(file);
@@ -58,4 +62,3 @@ export class InputFileComponent implements OnInit {
   }
 
 }
-

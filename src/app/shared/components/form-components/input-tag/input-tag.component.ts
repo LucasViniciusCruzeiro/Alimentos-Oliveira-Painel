@@ -5,14 +5,14 @@ import { UtilsService } from 'app/shared/services/utils.service';
 @Component({
   selector: 'app-input-tag',
   templateUrl: './input-tag.component.html',
-  styleUrls: ['./input-tag.component.scss']
+  styleUrls: ['./input-tag.component.scss'],
 })
 export class InputTagComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
   @Input() formcontrolname: string;
 
-  @Input() data: Array<any>;
+  @Input() data: any[];
   @Input() placeholder = '+ uma tag';
 
   @Input() backgroundColor = 'lightblue';
@@ -23,7 +23,7 @@ export class InputTagComponent implements OnInit {
   @ViewChild('tagInput', null) tagInputRef: ElementRef;
 
   constructor(
-    private _utilsService: UtilsService
+    private _utilsService: UtilsService,
   ) { }
 
   ngOnInit() {

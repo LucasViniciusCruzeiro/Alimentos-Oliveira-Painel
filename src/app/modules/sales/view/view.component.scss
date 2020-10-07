@@ -1,0 +1,16 @@
+.content-wrapper {
+    margin-top: -15px !important;
+}
+.content-header {
+    height: 220px !important;
+}
+@media only screen and (max-width: 959px) {
+    .content-header {
+        height: 320px !important;
+    }
+}
+@media only screen and (max-width: 599px) {
+    .content-header {
+        height: 375px !important;
+    }
+}

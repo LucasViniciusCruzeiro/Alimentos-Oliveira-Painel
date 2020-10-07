@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule, FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'app/shared/material/material.module';
 
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ErrorsComponent } from '../errors/errors.component';
 import { InputSelectComponent } from './input-select.component';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 describe('InputSelectComponent', () => {
   let component: InputSelectComponent;
@@ -24,7 +24,7 @@ describe('InputSelectComponent', () => {
         FlexLayoutModule,
         ReactiveFormsModule,
         MaterialModule,
-        NgxMatSelectSearchModule
+        NgxMatSelectSearchModule,
       ],
     })
       .compileComponents();
@@ -36,7 +36,7 @@ describe('InputSelectComponent', () => {
 
     component.formcontrolname = 'inputText';
     component.formGroup = formBuilder.group({
-      inputText: new FormControl(1)
+      inputText: new FormControl(1),
     });
 
     component.iconName = 'person';
@@ -46,7 +46,7 @@ describe('InputSelectComponent', () => {
       { id: 2, description: 'teste2' },
       { id: 3, description: 'teste3' },
       { id: 4, description: 'teste4' },
-      { id: 5, description: 'teste5' }
+      { id: 5, description: 'teste5' },
     ];
     component.displayField = 'description';
     component.searchField = 'description';

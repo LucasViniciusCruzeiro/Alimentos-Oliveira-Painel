@@ -32,6 +32,13 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
       sorted: true
     },
     {
+      displayedColumn: 'value',
+      columnRef: 'value',
+      nameColumn: 'Valor',
+      type: Column.TYPE_COMMOM,
+      sorted: true
+    },
+    {
       displayedColumn: 'actions',
       columnRef: 'actions',
       nameColumn: 'Ações',

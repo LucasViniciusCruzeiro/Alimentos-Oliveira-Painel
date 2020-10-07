@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from 'app/app.component';
 import { fuseConfig } from 'app/fuse-config';
 import { LayoutModule } from 'app/layout/layout.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { rootReducer } from './store/index.reducers';
 
@@ -32,6 +33,7 @@ import { LoadingModule } from './shared/components/several-components/loading/lo
         HttpClientModule,
         AppRoutingModule,
         TranslateModule.forRoot(),
+        NgxChartsModule,
 
         // Material moment date module
         MatMomentDateModule,

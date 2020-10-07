@@ -7,11 +7,11 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-input-select',
   templateUrl: './input-select.component.html',
-  styleUrls: ['./input-select.component.scss']
+  styleUrls: ['./input-select.component.scss'],
 })
 export class InputSelectComponent implements OnInit, OnDestroy {
 
-  @Input() data: Array<any>;
+  @Input() data: any[];
   @Input() displayField: string;
   @Input() formGroup: FormGroup;
   @Input() formcontrolname: string;
@@ -23,7 +23,7 @@ export class InputSelectComponent implements OnInit, OnDestroy {
   @Input() valueField: string;
 
   @Output() searchOnApi = new EventEmitter();
-  @Output() select = new EventEmitter();
+  @Output() selectChange = new EventEmitter();
 
   public dataFilterCtrl: FormControl = new FormControl();
   public filteredData: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
@@ -32,10 +32,10 @@ export class InputSelectComponent implements OnInit, OnDestroy {
 
   constructor(
     private _cdr: ChangeDetectorRef,
-    private _utilsService: UtilsService
+    private _utilsService: UtilsService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataFilterCtrl.valueChanges.pipe(takeUntil(this._onDestroy), debounceTime(500)).subscribe(
       (data) => {
         if (this.refreshApi) {
@@ -45,17 +45,17 @@ export class InputSelectComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.data) {
       this.filteredData.next(this.data);
     }
   }
 
-  checkRequired() {
+  checkRequired(): boolean {
     return this._utilsService.hasRequiredField(this.formGroup.get(this.formcontrolname));
   }
 
-  protected filterData() {
+  protected filterData(): boolean {
     if (!this.data) {
       return;
     }
@@ -69,17 +69,17 @@ export class InputSelectComponent implements OnInit, OnDestroy {
       search = search.toLowerCase();
     }
     this.filteredData.next(
-      this.data.filter(item => item[this.searchField].toLowerCase().includes(search))
+      this.data.filter(item => item[this.searchField].toLowerCase().includes(search)),
     );
 
     this._cdr.detectChanges();
   }
 
-  onSelectChange(value) {
-    this.select.emit(value)
+  onSelectChange(event): void {
+    this.selectChange.emit(event);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._onDestroy.next();
     this._onDestroy.complete();
   }

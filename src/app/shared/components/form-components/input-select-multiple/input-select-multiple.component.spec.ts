@@ -8,7 +8,7 @@ describe('InputSelectMultipleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputSelectMultipleComponent ]
+      declarations: [ InputSelectMultipleComponent ],
     })
     .compileComponents();
   }));

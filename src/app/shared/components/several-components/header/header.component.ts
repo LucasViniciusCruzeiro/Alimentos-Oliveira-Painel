@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { fuseAnimations } from 'app/shared/animations';
 import { Operation } from 'app/shared/enums/operation';
-import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -9,7 +9,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   animations: fuseAnimations,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
 
@@ -19,9 +19,15 @@ export class HeaderComponent implements OnInit {
   @Input() operation: Operation;
   @Input() formGroup: FormGroup;
 
+  @Input() isRefresh = true;
+  @Input() isAdded = true;
   @Input() isFilter = true;
+  @Input() isSearch = true;
+  @Input() isReturn = true;
+  @Input() labelButton = 'ADICIONAR';
   @Input() config;
 
+  @Output() refresh = new EventEmitter();
   @Output() save = new EventEmitter();
   @Output() update = new EventEmitter();
   @Output() search = new EventEmitter();
@@ -29,14 +35,36 @@ export class HeaderComponent implements OnInit {
   @Output() filter = new EventEmitter();
 
   searchInput: FormControl;
+  hold = '';
 
   constructor() {
     this.searchInput = new FormControl();
   }
 
+  onPickUpValue(): void {
+    const value = this.searchInput.value;
+
+    if (value[0] === ' ') {
+      this.searchInput.setValue('');
+    }
+  }
+
+  onValidationSpace(event): boolean {
+    const keypress = event.key;
+
+    if (keypress === ' ' && this.hold === ' ') {
+      return false;
+    }
+    this.hold = keypress;
+  }
+
   ngOnInit(): void {
     this.searchInput.valueChanges.pipe(debounceTime(200)).subscribe(
       value => this.search.emit(value));
+  }
+
+  onRefresh(): void {
+    this.refresh.emit();
   }
 
   onSave(): void {

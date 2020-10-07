@@ -7,14 +7,14 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-input-select-multiple',
   templateUrl: './input-select-multiple.component.html',
-  styleUrls: ['./input-select-multiple.component.scss']
+  styleUrls: ['./input-select-multiple.component.scss'],
 })
 export class InputSelectMultipleComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() formGroup: FormGroup;
   @Input() formcontrolname: string;
 
-  @Input() data: Array<any>;
+  @Input() data: any[];
   @Input() displayField: string;
   @Input() label: string;
   @Input() noEntriesFoundLabel = 'Nada encontrado';
@@ -36,20 +36,20 @@ export class InputSelectMultipleComponent implements OnInit, OnChanges, OnDestro
 
   constructor(
     private _cdr: ChangeDetectorRef,
-    private _utilsService: UtilsService
+    private _utilsService: UtilsService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.listenSearch();
   }
 
-  listenSearch() {
+  listenSearch(): void {
     this.dataFilterCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(() => {
       this.filterData();
     });
   }
 
-  protected filterData() {
+  protected filterData(): void {
     if (!this.data) { return; }
 
     let search = this.dataFilterCtrl.value;
@@ -64,28 +64,28 @@ export class InputSelectMultipleComponent implements OnInit, OnChanges, OnDestro
       this.searchOnApi.emit(search);
     } else {
       this.filteredData.next(
-        this.data.filter(item => item[this.searchField].toLowerCase().includes(search))
+        this.data.filter(item => item[this.searchField].toLowerCase().includes(search)),
       );
     }
 
     this._cdr.detectChanges();
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.data) {
       this.filteredData.next(this.data);
     }
   }
 
-  checkRequired() {
+  checkRequired(): boolean {
     return this._utilsService.hasRequiredField(this.formGroup.get(this.formcontrolname));
   }
 
-  onChangeSelect(event) {
+  onChangeSelect(event): void {
     this.changeSelect.emit(event);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._onDestroy.next();
     this._onDestroy.complete();
   }

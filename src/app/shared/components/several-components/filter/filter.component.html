@@ -1,24 +1,36 @@
-<div fxFlex="100" style="width: 0 !important;" fxLayout="row" fxLayoutGap="10px">
+<div fxFlex="100" fxLayout="row wrap" fxLayoutGap="10px grid">
 
   <ng-container *ngFor="let item of config.filters; let i = index">
 
-    <div fxFlex="100" style="width: 0 !important;" [ngSwitch]="item.type">
+    <div [fxFlex.xs]="config.filters.length > 1 ? 50 : 100"
+      [fxFlex]="config.filters.length > 4 ? 25 : 100 / config.filters.length"
+      class="boxInput" [ngSwitch]="item.type">
 
-      <mat-form-field fxFlex="100" *ngSwitchCase="'type_select'" style="font-size: 10px;" appearance="outline">
+      <mat-form-field fxFlex *ngSwitchCase="'type_select'" style="font-size: 10px;" appearance="outline">
         <mat-label>{{ item.label }}</mat-label>
-        <mat-select [(ngModel)]="result[i]" (ngModelChange)="onChange($event, item.returnParam)">
+        <mat-select [(ngModel)]="result[i]" [disabled]="item.disabled" 
+          (ngModelChange)="onChange($event, item.returnParam)">
           <mat-option *ngFor="let element of item.data" [value]="element[item.valueField]">
             {{ element[item.displayField] }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-
-      <mat-slide-toggle fxFlex="100" *ngSwitchCase="'type_toggle'" [(ngModel)]="result[i]"
-        (ngModelChange)="onChange($event, item.returnParam)">
-        <span style="font-size: 10px;">{{ item.label }} {{result[i]}}</span>
+      <mat-form-field fxFlex *ngSwitchCase="'type_multiple_select'" style="font-size: 10px;" appearance="outline">
+        <mat-label>{{ item.label }}</mat-label>
+        <mat-select [(ngModel)]="result[i]" [disabled]="item.disabled" [compareWith]="compareObjects"
+          (ngModelChange)="onChange($event, item.returnParam)" multiple>
+          <mat-option *ngFor="let element of item.data" [value]="element[item.valueField]">
+            {{ element[item.displayField] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle fxFlex *ngSwitchCase="'type_toggle'" [(ngModel)]="result[i]"
+        (ngModelChange)="onChange($event, item.returnParam)" fxLayoutAlign="space-evenly center"
+        style="margin-top: 10px;">
+        <span style="font-size: 10px;color: white;">{{ item.label }}</span>
       </mat-slide-toggle>
 
-      <mat-form-field fxFlex="100" *ngSwitchCase="'type_date'" style="font-size: 10px;" appearance="outline">
+      <mat-form-field fxFlex *ngSwitchCase="'type_date'" style="font-size: 10px;" appearance="outline">
         <mat-label>{{ item.label }}</mat-label>
         <input [(ngModel)]="result[i]" matInput [matDatepicker]="picker" [placeholder]="label" autocomplete="off"
           [min]="minDate" [max]="maxDate" (ngModelChange)="onChange($event, item.returnParam)">
@@ -26,7 +38,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field fxFlex="100" *ngSwitchCase="'type_input'" style="font-size: 10px;" appearance="outline">
+      <mat-form-field fxFlex *ngSwitchCase="'type_input'" style="font-size: 10px;" appearance="outline">
         <mat-label>{{ item.label }}</mat-label>
         <input [(ngModel)]="result[i]" matInput [placeholder]="label" autocomplete="off"
           (ngModelChange)="onChange($event, item.returnParam)">

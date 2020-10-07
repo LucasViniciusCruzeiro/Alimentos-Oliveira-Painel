@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('./home-screen/home-screen.module').then(m => m.HomeScreenModule),
       },
       {
+        path: 'stock',
+        loadChildren: () => import('./stock/stock.module').then(m => m.StockModule),
+      },
+      {
         path: 'home-screen',
         loadChildren: () => import('./home-screen/home-screen.module').then(m => m.HomeScreenModule),
       },
