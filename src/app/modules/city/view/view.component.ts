@@ -7,9 +7,10 @@ import { ViewInterface } from 'app/shared/interfaces/view.interface';
 import { SwalService } from 'app/shared/services/swal.service';
 import { Subscription } from 'rxjs';
 import { LoadingService } from 'app/shared/components/several-components/loading/loading.service';
-import { Product } from 'app/shared/models/product.model';
 import { CityService } from 'app/shared/services/city.service';
 import { City } from 'app/shared/models/city.model';
+import { cloneDeep } from 'lodash';
+import { ExportDataInterface } from 'app/shared/interfaces/export-data.interface';
 
 @Component({
   selector: 'app-view',
@@ -19,6 +20,7 @@ import { City } from 'app/shared/models/city.model';
 export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
   title = 'Cidades';
   operation: Operation = Operation.INDEX;
+  dataToExport: ExportDataInterface = { columns: [], data: [] };
   options = {};
   filters = null;
 
@@ -62,7 +64,6 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
   onRefresh(params?: any): void {
     this.options = { ...this.options, ...params };
     this.subscription = this._cityService.loadAll(this.options).subscribe((result: any) => {
-      console.log(result);
       this._loadingService.hide();
       const city: City[] = result.data;
       this.configuration.total = result.size;
@@ -73,10 +74,28 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
         };
         return obj;
       });
+
+      this.formatDataToExport();
     }, (error) => {
       this._loadingService.hide();
       this._swalService.error('Ops', error.error.message);
     });
+  }
+
+  formatDataToExport(): void {
+    const formattedDataValues = cloneDeep(this.dataSource);
+
+    formattedDataValues.map(row => {
+      return row;
+    });
+
+    this.dataToExport = {
+      columns: [
+        { title: 'Descrição', dataKey: 'name' },
+        { title: 'Estado', dataKey: 'state' },
+      ],
+      data: formattedDataValues
+    };
   }
 
   refreshFilter(): void {

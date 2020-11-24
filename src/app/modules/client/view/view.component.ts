@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 import { LoadingService } from 'app/shared/components/several-components/loading/loading.service';
 import { ClientService } from 'app/shared/services/client.service';
 import { Client } from 'app/shared/models/client.model';
+import { cloneDeep } from 'lodash';
+import { ExportDataInterface } from 'app/shared/interfaces/export-data.interface';
 
 @Component({
   selector: 'app-view',
@@ -18,6 +20,7 @@ import { Client } from 'app/shared/models/client.model';
 export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
   title = 'Clientes';
   operation: Operation = Operation.INDEX;
+  dataToExport: ExportDataInterface = { columns: [], data: [] };
   options = {};
   filters = null;
 
@@ -91,12 +94,32 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
           Email: res.email ? res.email : '-',
           ...res,
         };
+        setTimeout(() => {
+          this.formatDataToExport();
+        }, 900);
         return obj;
       });
     }, (error) => {
       this._loadingService.hide();
       this._swalService.error('Ops', error.error.message);
     });
+  }
+
+  formatDataToExport(): void {
+    const formattedDataValues = cloneDeep(this.dataSource);
+    formattedDataValues.map(row => {
+      return row;
+    });
+
+    this.dataToExport = {
+      columns: [
+        { title: 'Descrição', dataKey: 'name' },
+        { title: 'Telefone Celular', dataKey: 'phoneNumber' },
+        { title: 'Email', dataKey: 'email' },
+        { title: 'Telefone Fixo', dataKey: 'fixPhone' },
+      ],
+      data: formattedDataValues
+    };
   }
 
   refreshFilter(): void {

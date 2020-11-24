@@ -29,7 +29,12 @@
                 <!-- / SEARCH -->
 
                 <!-- BUTTONS -->
-                <div class="button-wrapper mx-24 mx-md-0">
+                <div fxFlex="42" fxLayout="row" fxLayoutAlign="end center" fxFlex.sm="100">
+
+                    <button mat-raised-button class="button button-added fuse-white mx-8 mt-24 mt-md-0" title="Exportar XLSX_" (click)="onExportPDF()"
+                        *ngIf="isExported">
+                        <mat-icon>table_chart</mat-icon>
+                    </button>
                     <button mat-raised-button class="button button-added fuse-white mx-8 mt-24 mt-md-0" [routerLink]="['../new']"
                         *ngIf="isAdded">
                         <span>{{ labelButton }}</span>
@@ -38,11 +43,6 @@
                     <button mat-raised-button class="button button-added fuse-white mx-8 mt-24 mt-md-0" (click)="onSave()"
                         *ngIf="!isAdded && labelButton !== 'ADICIONAR'">
                         <span>{{ labelButton }}</span>
-                    </button>
-
-                    <button mat-raised-button class="button button-refresh fuse-white mx-8 mt-24 mt-md-0" (click)="onRefresh()"
-                        *ngIf="isRefresh">
-                        <mat-icon matSuffix class="secondary-text">refresh</mat-icon>
                     </button>
                 </div>
                 <!-- / BUTTONS -->

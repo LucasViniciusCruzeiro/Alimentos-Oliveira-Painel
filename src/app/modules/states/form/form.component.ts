@@ -52,7 +52,7 @@ export class FormComponent implements OnInit, FormInterface, OnDestroy {
 
   createForm(): void {
     this.form = new FormGroup({
-      idProduct: new FormControl({ value: null, disabled: true }),
+      idState: new FormControl({ value: null, disabled: true }),
       name: new FormControl(null, Validators.required),
     });
   }

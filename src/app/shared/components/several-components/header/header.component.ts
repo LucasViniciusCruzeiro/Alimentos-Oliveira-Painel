@@ -2,7 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { FormControl, FormGroup } from '@angular/forms';
 import { fuseAnimations } from 'app/shared/animations';
 import { Operation } from 'app/shared/enums/operation';
+import { ExportDataInterface } from 'app/shared/interfaces/export-data.interface';
+import { ExportDataService } from 'app/shared/services/export-data.service';
 import { debounceTime } from 'rxjs/operators';
+import { LoadingService } from '../loading/loading.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +22,7 @@ export class HeaderComponent implements OnInit {
   @Input() operation: Operation;
   @Input() formGroup: FormGroup;
 
+  @Input() isExported = false;
   @Input() isRefresh = true;
   @Input() isAdded = true;
   @Input() isFilter = true;
@@ -26,6 +30,7 @@ export class HeaderComponent implements OnInit {
   @Input() isReturn = true;
   @Input() labelButton = 'ADICIONAR';
   @Input() config;
+  @Input() dataToExport: ExportDataInterface;
 
   @Output() refresh = new EventEmitter();
   @Output() save = new EventEmitter();
@@ -35,9 +40,13 @@ export class HeaderComponent implements OnInit {
   @Output() filter = new EventEmitter();
 
   searchInput: FormControl;
+  fileName: string;
   hold = '';
 
-  constructor() {
+  constructor(
+    private _loadingService: LoadingService,
+    private _exportDataService: ExportDataService,
+  ) {
     this.searchInput = new FormControl();
   }
 
@@ -56,6 +65,11 @@ export class HeaderComponent implements OnInit {
       return false;
     }
     this.hold = keypress;
+  }
+
+  onExportPDF(): void {
+    this._loadingService.show();
+    this._exportDataService.exportAsExcelFile(this.dataToExport.columns, this.dataToExport.data, this.title);
   }
 
   ngOnInit(): void {

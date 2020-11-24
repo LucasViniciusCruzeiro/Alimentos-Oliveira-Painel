@@ -1,7 +1,7 @@
 <div id="view" fxFlex fxLayout="column">
 
-    <app-header [operation]="operation" [iconName]="iconName" (search)="onSearch($event)" [title]="title"
-     [isFilter]="false" [config]="filterOrder">
+    <app-header [operation]="operation" [iconName]="iconName" [isSearch]="false" [title]="title"
+     [isFilter]="false" [config]="filterOrder"  [isExported]="true" [dataToExport]="dataToExport">
     </app-header>
     <!-- CONTENT WRAPPER -->
     <div class="content-wrapper w-100-p" fusePerfectScrollbar>
