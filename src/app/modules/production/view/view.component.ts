@@ -13,6 +13,8 @@ import { ProductionService } from 'app/shared/services/production.service';
 import { Production } from 'app/shared/models/production.model';
 import * as moment from 'moment';
 import { Filter, FilterType } from 'app/shared/components/several-components/filter/filter-type';
+import { ExportDataInterface } from 'app/shared/interfaces/export-data.interface';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-view',
@@ -22,6 +24,7 @@ import { Filter, FilterType } from 'app/shared/components/several-components/fil
 export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
   title = 'Produção';
   operation: Operation = Operation.INDEX;
+  dataToExport: ExportDataInterface = { columns: [], data: [] };
   options = {};
   filters = null;
   filterOrder: Filter = this.refreshFilter();
@@ -96,12 +99,33 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
           value: res.value + ' R$'
         };
         this._loadingService.hide();
+        setTimeout(() => {
+          this.formatDataToExport();
+        }, 900);
         return obj;
       });
     }, (error) => {
       this._loadingService.hide();
       this._swalService.error('Ops', error.error.message);
     });
+  }
+
+  formatDataToExport(): void {
+    const formattedDataValues = cloneDeep(this.dataSource);
+
+    formattedDataValues.map(row => {
+      return row;
+    });
+
+    this.dataToExport = {
+      columns: [
+        { title: 'Data de Produção', dataKey: 'productionDate' },
+        { title: 'Produto', dataKey: 'productName' },
+        { title: 'Quantidade', dataKey: 'amount' },
+        { title: 'Valor', dataKey: 'value' },
+      ],
+      data: formattedDataValues
+    };
   }
 
   refreshFilter(): Filter {

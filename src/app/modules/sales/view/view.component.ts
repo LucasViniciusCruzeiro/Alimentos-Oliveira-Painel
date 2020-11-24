@@ -16,6 +16,8 @@ import { Filter, FilterType } from 'app/shared/components/several-components/fil
 import { SalesService } from 'app/shared/services/sales.service';
 import { Sales } from 'app/shared/models/sales.model';
 import { ClientService } from 'app/shared/services/client.service';
+import { ExportDataInterface } from 'app/shared/interfaces/export-data.interface';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-view',
@@ -25,6 +27,7 @@ import { ClientService } from 'app/shared/services/client.service';
 export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
   title = 'Vendas';
   operation: Operation = Operation.INDEX;
+  dataToExport: ExportDataInterface = { columns: [], data: [] };
   options = {};
   filters = null;
   filterOrder: Filter = this.refreshFilter();
@@ -108,6 +111,9 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
           productName: res.product.name,
           city: `${res.client.city.name} - ${res.client.city.state.name}`,
         };
+        setTimeout(() => {
+          this.formatDataToExport();
+        }, 900);
         this._loadingService.hide();
         return obj;
       });
@@ -115,6 +121,25 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
       this._loadingService.hide();
       this._swalService.error('Ops', error.error.message);
     });
+  }
+
+  formatDataToExport(): void {
+    const formattedDataValues = cloneDeep(this.dataSource);
+
+    formattedDataValues.map(row => {
+      return row;
+    });
+
+    this.dataToExport = {
+      columns: [
+        { title: 'Data de Produção', dataKey: 'dateSales' },
+        { title: 'Cliente', dataKey: 'clientName' },
+        { title: 'Cidade', dataKey: 'city' },
+        { title: 'Produto', dataKey: 'productName' },
+        { title: 'Quantidade', dataKey: 'amount' },
+      ],
+      data: formattedDataValues
+    };
   }
 
   getClient(): void {
@@ -139,11 +164,11 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
       },
       {
         returnParam: 'DTPRODUCINITIAL',
-        label: 'Data Produção Inicial',
+        label: 'Data de Venda Inicial',
         type: FilterType.TYPE_DATE,
       }, {
         returnParam: 'DTPRODUCFINAL',
-        label: 'Data Produção Final',
+        label: 'Data de Venda Final',
         type: FilterType.TYPE_DATE,
       },
     ]);

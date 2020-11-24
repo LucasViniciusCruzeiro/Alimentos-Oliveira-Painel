@@ -6,6 +6,7 @@ import { FormComponentsModule } from './components/form-components/form-componen
 import { SeveralComponentsModule } from './components/several-components/several-components.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
+import { ExportDataService } from './services/export-data.service';
 
 
 @NgModule({
@@ -16,6 +17,9 @@ import { MaterialModule } from './material/material.module';
     CommonModule,
     FormComponentsModule,
     SeveralComponentsModule,
+  ],
+  providers: [
+    ExportDataService,
   ],
   exports: [
     FormComponentsModule,

@@ -10,6 +10,8 @@ import { LoadingService } from 'app/shared/components/several-components/loading
 import { Product } from 'app/shared/models/product.model';
 import { IngredientsService } from 'app/shared/services/ingredients.service';
 import { Ingredients } from 'app/shared/models/ingredients.model';
+import { cloneDeep } from 'lodash';
+import { ExportDataInterface } from 'app/shared/interfaces/export-data.interface';
 
 @Component({
   selector: 'app-view',
@@ -19,6 +21,7 @@ import { Ingredients } from 'app/shared/models/ingredients.model';
 export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
   title = 'Tipos de Ingredientes';
   operation: Operation = Operation.INDEX;
+  dataToExport: ExportDataInterface = { columns: [], data: [] };
   options = {};
   filters = null;
 
@@ -76,12 +79,31 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
         const obj = {
           ...res,
         };
+        setTimeout(() => {
+          this.formatDataToExport();
+        }, 900);
         return obj;
       });
     }, (error) => {
       this._loadingService.hide();
       this._swalService.error('Ops', error.error.message);
     });
+  }
+
+  formatDataToExport(): void {
+    const formattedDataValues = cloneDeep(this.dataSource);
+
+    formattedDataValues.map(row => {
+      return row;
+    });
+
+    this.dataToExport = {
+      columns: [
+        { title: 'Descrição', dataKey: 'name' },
+        { title: 'Valor', dataKey: 'value' },
+      ],
+      data: formattedDataValues
+    };
   }
 
   refreshFilter(): void {

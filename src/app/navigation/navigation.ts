@@ -7,65 +7,6 @@ export const navigation: FuseNavigation[] = [
         translate: 'NAV.APPLICATIONS',
         type: 'group',
         children: [
-            // {
-            //     id: 'administrative-page',
-            //     title: 'Administrativo',
-            //     translate: 'NAV.ADMINISTRATIVE.TITLE',
-            //     type: 'collapsable',
-            //     icon: 'dashboard',
-            //     children: [
-            //         {
-            //             id: 'administrative-page',
-            //             title: 'Clientes',
-            //         
-            //             type: 'item',
-            //             icon: 'local_shipping',
-            //             url: '/admin/shipping-company'
-            //         }, {
-            //             id: 'factory-page',
-            //             title: 'Fabricação',
-            //             type: 'item',
-            //             icon: 'email',
-            //             url: '/admin/factory',
-            //         },
-            //         {
-            //             id: 'user-page',
-            //             title: 'Usuários',
-            //             type: 'item',
-            //             icon: 'person',
-            //             url: '/admin/user'
-            //         }, {
-            //             id: 'vehicle-type',
-            //             title: 'Vendas',
-            //             type: 'item',
-            //             icon: 'local_shipping',
-            //             url: '/admin/vehicle-type',
-            //         },
-            //         {
-            //             id: 'driver',
-            //             title: 'Estoque',
-            //             type: 'item',
-            //             icon: 'drive_eta',
-            //             url: '/admin/driver',
-            //         },
-            /*{
-               id: 'access-profiles',
-               title: 'Perfis de Acesso',
-               type: 'item',
-               icon: 'email',
-               url: '/admin/access-profiles',
-
-           }, */
-            // {
-            //     id: 'plaque',
-            //     title: 'Placas de Veículos e Tanques',
-            // 
-            //     type: 'item',
-            //     icon: 'directions_car',
-            //     url: '/admin/plaque'
-            // },
-            //     ]
-            // },
             {
                 id: 'exit-page',
                 title: 'Página Inicial',

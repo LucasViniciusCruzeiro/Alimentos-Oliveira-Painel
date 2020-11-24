@@ -10,6 +10,8 @@ import { LoadingService } from 'app/shared/components/several-components/loading
 import { Product } from 'app/shared/models/product.model';
 import { StateService } from 'app/shared/services/state.service';
 import { State } from 'app/shared/models/state.model';
+import { ExportDataInterface } from 'app/shared/interfaces/export-data.interface';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-view',
@@ -19,6 +21,7 @@ import { State } from 'app/shared/models/state.model';
 export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
   title = 'Estados';
   operation: Operation = Operation.INDEX;
+  dataToExport: ExportDataInterface = { columns: [], data: [] };
   options = {};
   filters = null;
 
@@ -69,12 +72,30 @@ export class ViewComponent implements OnInit, ViewInterface, OnDestroy {
         const obj = {
           ...res,
         };
+        setTimeout(() => {
+          this.formatDataToExport();
+        }, 900);
         return obj;
       });
     }, (error) => {
       this._loadingService.hide();
       this._swalService.error('Ops', error.error.message);
     });
+  }
+
+  formatDataToExport(): void {
+    const formattedDataValues = cloneDeep(this.dataSource);
+
+    formattedDataValues.map(row => {
+      return row;
+    });
+
+    this.dataToExport = {
+      columns: [
+        { title: 'Sigla do Estado', dataKey: 'name' },
+      ],
+      data: formattedDataValues
+    };
   }
 
   refreshFilter(): void {

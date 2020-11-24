@@ -1,7 +1,7 @@
 <div id="view" fxFlex fxLayout="column">
   <div class="content-header">
     <app-header [operation]="operation" [iconName]="iconName" [isSearch]="false" [title]="title" [isFilter]="true"
-      (filter)="onFilter($event)" [config]="filterOrder">
+      (filter)="onFilter($event)" [config]="filterOrder"  [isExported]="true" [dataToExport]="dataToExport">
     </app-header>
   </div>
   <!-- CONTENT WRAPPER -->

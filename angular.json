@@ -29,7 +29,10 @@
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": [],
+                        "scripts": [
+                            "node_modules/jspdf/dist/jspdf.min.js",
+                            "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
+                        ],
                         "showCircularDependencies": false
                     },
                     "configurations": {
